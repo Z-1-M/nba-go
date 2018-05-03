@@ -88,9 +88,13 @@ export default class Team {
   }
 
   getQuarterScore(quarter) {
-    return this.linescores.find(
+    var tempquarterscore = this.linescores.find(
       quarterData => quarterData.period_value === quarter
     ).score;
+    if(tempquarterscore===undefined){
+      tempquarterscore ='';
+    }
+    return tempquarterscore;
   }
 
   getGameStats() {
@@ -136,8 +140,9 @@ export default class Team {
   }
 
   setQuarterScore(quarter, score) {
-    this.linescores.find(
+    var tempquarterscore = this.linescores.find(
       quarterData => quarterData.period_value === quarter
-    ).score = score;
+    ).score;
+    tempquarterscore = (typeof tempquarterscore !== undefined ) ? tempquarterscore : score;
   }
 }
